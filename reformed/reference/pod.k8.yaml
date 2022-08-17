@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: reformed
+  namespace: default
+  labels:
+    app.kubernetes.io/instance: reformed-server
+    app.kubernetes.io/name: reformed
+spec:
+  containers:
+    - image: ghcr.io/davidlougheed/reformed:sha-eb370dc
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        failureThreshold: 6
+        httpGet:
+          path: /api/v1/formats
+          port: http
+          scheme: HTTP
+        initialDelaySeconds: 120
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      name: reformed
+      ports:
+      - containerPort: 8000
+        name: http
+        protocol: TCP
+      readinessProbe:
+        failureThreshold: 6
+        httpGet:
+          path: /api/v1/formats
+          port: http
+          scheme: HTTP
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+  restartPolicy: Always

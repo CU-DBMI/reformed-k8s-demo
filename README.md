@@ -49,7 +49,7 @@ Alternatively, if you have `curl` installed, you can use it to make a simple
 request against the service. For example, we'll convert `README.md` from
 Markdown to a PDF using the following code snippet:
 
-```
+```bash
 # first, remove README.pdf so we can be sure we're getting a fresh copy
 rm -f README.pdf
 
