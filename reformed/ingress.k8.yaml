@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: reformed-ingress
+  namespace: default
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - convert.cuhealth.ai
+      secretName: tls-k0s-ingress
+  rules:
+    - host: convert.cuhealth.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name:  reformed-service
+                port:
+                  number: 8000
