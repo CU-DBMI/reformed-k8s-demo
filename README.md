@@ -18,7 +18,7 @@ Assuming you have `kubectl` installed and your desired context activated, simply
 run the following to deploy Reformed:
 
 ```
-kubectl apply -f ./reformed/app.k8.yaml
+kubectl apply -f ./manifests/app.k8.yaml
 ```
 
 This will launch Reformed on the cluster, but in order to access it you'll need
@@ -34,7 +34,7 @@ e.g. http://localhost:8005/api/v1/formats.
 
 ### Ingress Notes
 
-The ingress configuration at `./reformed/ingress.k8.yaml` assumes you have
+The ingress configuration at `./manifests/ingress.k8.yaml` assumes you have
 [ingress-nginx](https://github.com/kubernetes/ingress-nginx) (i.e., the
 community version of the NGINX ingress for k8s) installed in your cluster. If
 you do want to use the ingress, first edit the ingress file to match your
